@@ -26,57 +26,57 @@ var minMassSlider;
 var maxMassSlider;
 var elasticitySlider;
 
+var minMassValue, maxMassValue, elasticityValue, gravityValue, nBallsValue;
+
+
 function setup() {
   createCanvas(800, 500);
+  document.body.append(document.createElement('br'));
+
+  minMassValue = document.getElementById('minMassValue');
+  maxMassValue = document.getElementById('maxMassValue');
+  elasticityValue = document.getElementById('elasticityValue');
+  gravityValue = document.getElementById('gravityValue');
+  nBallsValue = document.getElementById('nBallsValue');
+
   addRandomParticlesButton = createButton('add random particles');
-  // addRandomParticlesButton.position(0, 0);
   addRandomParticlesButton.mousePressed(addRandomParticles);
 
   add2CollidingParticlesButton = createButton('add 2 colliding particles');
-  // add2CollidingParticlesButton.position(0, 40);
-  add2CollidingParticlesButton.size(100, 20);
   add2CollidingParticlesButton.mousePressed(addTwoCollidingParticles);
 
   showVelocityCheckbox = createCheckbox('show velocity', false);
-  // showVelocityCheckbox.position(110, 0);
   showVelocityCheckbox.changed(showVelocity);
 
   showAccelerationCheckbox = createCheckbox('show acceleration', false);
-  // showAccelerationCheckbox.position(180, 0);
   showAccelerationCheckbox.changed(showAcceleration);
 
   collideCheckbox = createCheckbox('collide', false);
-  // collideCheckbox.position(300, 0);
   collideCheckbox.changed(setCollide);
 
-  // should be labeled "particles"
   nSlider = createSlider(0, 100, 10, 1);
-  // nSlider.position(100, 80);
   nSlider.changed(changeN);
+  nSlider.parent(document.getElementById('nBalls'));
 
-  // should be labeled "g"
   gSlider = createSlider(-1000, 0, -480);
-  // gSlider.position(300, 50);
   gSlider.size(100, 20);
   gSlider.changed(setGravity);
+  gSlider.parent(document.getElementById('gravity'));
 
-  // should be labeled "min mass"
   minMassSlider = createSlider(0, 1000, 50);
-  // minMassSlider.position(400, 25);
   minMassSlider.size(200, 10);
-  minMassSlider.changed(setMinMass); // todo: create this function
+  minMassSlider.changed(setMinMass);
+  minMassSlider.parent(document.getElementById('minMass'));
 
-  // should be labeled "max mass"
   maxMassSlider = createSlider(0, 1000, 200);
-  // maxMassSlider.position(400, 50);
   maxMassSlider.size(200, 10);
-  maxMassSlider.changed(setMaxMass); // todo: create this function
+  maxMassSlider.changed(setMaxMass);
+  maxMassSlider.parent(document.getElementById('maxMass'));
 
-  // should be labeled "elasticity"
   elasticitySlider = createSlider(0, 1, 1, 0.01);
-  // elasticitySlider.position(500, 50);
   elasticitySlider.size(100, 20);
   elasticitySlider.changed(setElasticity);
+  elasticitySlider.parent(document.getElementById('elasticity'));
 
 
   ellipseMode(RADIUS);
@@ -157,25 +157,30 @@ function setCollide() {
 function changeN() {
   nParticles = nSlider.value();
   addRandomParticles();
+  nBallsValue.innerHTML = nSlider.value();
 }
 
 function setMinMass() {
   minMass = minMassSlider.value();
   addRandomParticles();
+  minMassValue.innerHTML = minMass;
 }
 
 function setMaxMass() {
   maxMass = maxMassSlider.value();
   addRandomParticles();
+  maxMassValue.innerHTML = maxMass;
 }
 
 
 function setGravity() {
   ps.setGravity(createVector(0, gSlider.value()));
+  gravityValue.innerHTML = gSlider.value();
 }
 
 function setElasticity() {
   ps.setElasticity(elasticitySlider.value());
+  elasticityValue.innerHTML = elasticitySlider.value();
 }
 
 function pause() {

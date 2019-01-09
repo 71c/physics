@@ -26,9 +26,9 @@ class Particle {
   }
 
   setGravity(newG) {
-    this.applyForce(p5.Vector.mult(gravity, -this.mass));
+    this.applyForce(p5.Vector.mult(this.gravity, -this.mass));
     this.gravity = newG;
-    this.applyForce(p5.Vector.mult(gravity, this.mass));
+    this.applyForce(p5.Vector.mult(this.gravity, this.mass));
   }
 
   getPosition() {
@@ -59,7 +59,7 @@ class Particle {
       y1 = height - startPos.y,
       x2 = startPos.x + vec.x * scaleFactor,
       y2 = height - (startPos.y + vec.y * scaleFactor);
-    arrow(x1, y1, x2, y2);
+    this.arrow(x1, y1, x2, y2);
   }
 
   arrow(x1, y1, x2, y2) {
