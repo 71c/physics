@@ -20,8 +20,6 @@ class Particle {
     this.visualizeAcceleration = visualizeAcceleration_;
     this.hasCollided = false;
 
-    this.visualizeVelocity = false;
-    this.visualizeAcceleration = false;
     this.touchingAnyParticles = false;
   }
 

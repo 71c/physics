@@ -1,4 +1,4 @@
-var nParticles = 2;
+var nParticles = 10;
 var isPlaying = true;
 
 var deltaTime = -1;
@@ -80,7 +80,8 @@ function setup() {
 
 
   ellipseMode(RADIUS);
-  ps = new ParticleSystem(createVector(0, -480), true, true, 1.0, 0.5);
+  ps = new ParticleSystem(createVector(0, -480), false, true, 1.0, 0.5);
+  addRandomParticles();
   fill(255);
 }
 
